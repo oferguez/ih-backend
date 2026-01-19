@@ -1,0 +1,11 @@
+name: innohives
+channels:
+  - defaults
+dependencies:
+  - python=3.13
+  - jupyter
+  - notebook
+  - pandas
+  - numpy
+  - matplotlib
+  - duckdb
