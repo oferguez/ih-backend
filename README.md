@@ -18,3 +18,8 @@ CREATE TABLE telegram AS
 - option for nominal vs normalized delta 
 - per channel distribution
 - keep sample messages
+- further filtering? occurances?
+- using LLM to extract subjects
+- for high load:
+  - streaming iteration over the messages database
+  - parallelising run over months and then integrating 

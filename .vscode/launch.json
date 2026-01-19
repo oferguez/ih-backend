@@ -7,8 +7,9 @@
       "request": "launch",
       "module": "innohives.main",
       "args": [
+        // "--analyse",
         "--limit",
-        "10000"
+        "800000"
       ],
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"

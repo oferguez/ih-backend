@@ -77,6 +77,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default="DEBUG",
         help="Logging level (e.g., DEBUG, INFO).",
     )
+    parser.add_argument(
+        "--analyse",
+        action="store_true",
+        help="Run analysis and write trends.json before starting the server.",
+    )
     return parser
 
 
