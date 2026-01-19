@@ -13,7 +13,7 @@ def main() -> None:
     if args.analyse:
         run_analysis(args)
 
-    app = create_app()
+    app = create_app(database_path=args.database)
     logger.info("Listening on http://localhost:3100")
     app.run(host="127.0.0.1", port=3100)
 

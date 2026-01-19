@@ -19,8 +19,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--limit",
         type=int,
-        default=100,
-        help="Maximum number of rows to read.",
+        default=None,
+        help="Maximum number of rows to read. (0 means all)",
     )
     parser.add_argument(
         "--month-a",
@@ -63,14 +63,14 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--top-n",
         type=int,
-        default=100,
-        help="Number of highest delta subjects to include.",
+        default=0,
+        help="Number of highest delta subjects to include. (0 means all)",
     )
     parser.add_argument(
         "--bottom-n",
         type=int,
-        default=100,
-        help="Number of lowest delta subjects to include.",
+        default=0,
+        help="Number of lowest delta subjects to include. (0 means all)",
     )
     parser.add_argument(
         "--log-level",
@@ -86,5 +86,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 
 def configure_logging(level: str) -> logging.Logger:
-    logging.basicConfig(level=level.upper(), format="%(message)s")
+    logging.basicConfig(
+        level=level.upper(),
+        format="%(asctime)s %(message)s",
+    )
     return logging.getLogger(__name__)

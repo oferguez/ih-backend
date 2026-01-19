@@ -11,6 +11,8 @@
   - Saving itermediate trends.json within the database (compact data sources)
 
 - Additional improvemements and optimizations could include:
+  - loading and comparing only Sept vs Dec, if that is the requiremnt
+  - DI framework for run_analysis
   - option for nominal vs normalized delta 
   - per channel distribution
   - keep few sample messages in case the GUI user would like to drill down 
