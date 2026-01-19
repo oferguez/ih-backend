@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from innohives.datasource import InMemoryMessageSource, MessageRow
-from innohives.subjects import subjects_per_month
+from sklearn.feature_extraction.text import CountVectorizer
+
+from innohives.subjects import SubjectsAnalyzer
 
 
 def test_subjects_per_month_includes_bigrams() -> None:
@@ -23,7 +25,14 @@ def test_subjects_per_month_includes_bigrams() -> None:
     )
     source = InMemoryMessageSource(rows=rows)
 
-    results = subjects_per_month(source, min_df=1, max_df=1.0, ngram_range=(1, 2))
+    vectorizer = CountVectorizer(
+        stop_words="english",
+        ngram_range=(1, 2),
+        min_df=0.0,
+        max_df=1.0,
+    )
+    analyzer = SubjectsAnalyzer(source=source, vectorizer=vectorizer)
+    results = analyzer.run()
 
     september = results[0].subjects
     assert september["alpha beta"] == 2
