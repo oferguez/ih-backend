@@ -3,7 +3,7 @@
 - ```conda env create -f environment.yaml -p ./.innohives```
 - ```conda activate ./.innohives```
 
-## DB Setup:
+## DB import from csv:
 ```
 CREATE TABLE telegram AS
     SELECT * FROM read_csv_auto(

@@ -9,3 +9,5 @@ dependencies:
   - numpy
   - matplotlib
   - duckdb
+  - scikit-learn
+  - pytest

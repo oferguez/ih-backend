@@ -1,5 +1,8 @@
 {
   "python.defaultInterpreterPath": "${workspaceFolder}/.innohives/bin/python",
   "pylint.enabled": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/src"
+  ],
   "python.analysis.typeCheckingMode": "off"
 }
