@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from flask import Flask, Response
-
+from flask import Flask, Response, make_response
 
 def create_app() -> Flask:
     app = Flask(__name__)
@@ -14,6 +13,9 @@ def create_app() -> Flask:
         except FileNotFoundError:
             return Response("trends.json not found\n", status=404, mimetype="text/plain")
 
-        return Response(payload, status=200, mimetype="application/json")
+        resp = make_response(payload, 200)
+        resp.headers["Content-Type"] = "application/json"
+        resp.headers["Access-Control-Allow-Origin"] = "http://localhost:5173"  # or "*" for any
+        return resp
 
     return app

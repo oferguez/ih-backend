@@ -7,7 +7,6 @@
       "request": "launch",
       "module": "innohives.main",
       "args": [
-        // "--analyse",
         "--limit",
         "800000"
       ],

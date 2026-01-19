@@ -18,8 +18,7 @@ venv/
 .ipynb_checkpoints/
 
 # Data files
-data/*.csv
-data/*.duckdb
+data/
 
 # OS/editor
 .DS_Store

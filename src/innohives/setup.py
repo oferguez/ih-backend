@@ -63,13 +63,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--top-n",
         type=int,
-        default=10,
+        default=100,
         help="Number of highest delta subjects to include.",
     )
     parser.add_argument(
         "--bottom-n",
         type=int,
-        default=10,
+        default=100,
         help="Number of lowest delta subjects to include.",
     )
     parser.add_argument(
