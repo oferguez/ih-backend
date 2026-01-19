@@ -12,3 +12,9 @@ CREATE TABLE telegram AS
       sample_size=-1
     );
 ```    
+
+## Further features
+
+- option for nominal vs normalized delta 
+- per channel distribution
+- keep sample messages

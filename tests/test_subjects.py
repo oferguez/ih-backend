@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from innohives.datasource import InMemoryMessageSource, MessageRow
 from sklearn.feature_extraction.text import CountVectorizer
 
+from innohives.datasource import InMemoryMessageSource, MessageRow
 from innohives.subjects import SubjectsAnalyzer
 
 

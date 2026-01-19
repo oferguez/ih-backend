@@ -1,0 +1,122 @@
+[
+  {
+    "subject": "hanukkah",
+    "sept": 0,
+    "dec": 82,
+    "delta": 82
+  },
+  {
+    "subject": "weather",
+    "sept": 25,
+    "dec": 76,
+    "delta": 51
+  },
+  {
+    "subject": "rain",
+    "sept": 9,
+    "dec": 57,
+    "delta": 48
+  },
+  {
+    "subject": "december",
+    "sept": 3,
+    "dec": 46,
+    "delta": 43
+  },
+  {
+    "subject": "sydney",
+    "sept": 3,
+    "dec": 40,
+    "delta": 37
+  },
+  {
+    "subject": "abu shabab",
+    "sept": 8,
+    "dec": 42,
+    "delta": 34
+  },
+  {
+    "subject": "gray area",
+    "sept": 1,
+    "dec": 35,
+    "delta": 34
+  },
+  {
+    "subject": "shabab",
+    "sept": 8,
+    "dec": 42,
+    "delta": 34
+  },
+  {
+    "subject": "gray",
+    "sept": 2,
+    "dec": 35,
+    "delta": 33
+  },
+  {
+    "subject": "area joining",
+    "sept": 0,
+    "dec": 32,
+    "delta": 32
+  },
+  {
+    "subject": "https",
+    "sept": 1844,
+    "dec": 803,
+    "delta": -1041
+  },
+  {
+    "subject": "channel",
+    "sept": 762,
+    "dec": 75,
+    "delta": -687
+  },
+  {
+    "subject": "https abucarmelist",
+    "sept": 584,
+    "dec": 0,
+    "delta": -584
+  },
+  {
+    "subject": "abucarmelist",
+    "sept": 584,
+    "dec": 0,
+    "delta": -584
+  },
+  {
+    "subject": "follow",
+    "sept": 518,
+    "dec": 12,
+    "delta": -506
+  },
+  {
+    "subject": "follow channel",
+    "sept": 495,
+    "dec": 0,
+    "delta": -495
+  },
+  {
+    "subject": "channel https",
+    "sept": 463,
+    "dec": 3,
+    "delta": -460
+  },
+  {
+    "subject": "gaza",
+    "sept": 637,
+    "dec": 232,
+    "delta": -405
+  },
+  {
+    "subject": "israel",
+    "sept": 589,
+    "dec": 207,
+    "delta": -382
+  },
+  {
+    "subject": "https abcdefg1234567811",
+    "sept": 894,
+    "dec": 541,
+    "delta": -353
+  }
+]
