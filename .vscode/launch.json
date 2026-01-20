@@ -7,8 +7,11 @@
       "request": "launch",
       "module": "innohives.main",
       "args": [
-        "--limit",
-        "800000"
+        // "--analyse",
+        "--top-n",
+        "1000",
+        "--bottom-n",
+        "1000"
       ],
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"

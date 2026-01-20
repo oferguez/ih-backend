@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Iterable
 
-from sklearn.feature_extraction.text import CountVectorizer
-
 from .datasource import MessageRow, MessageSource
+from .vectorizer import Vectorizer
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -28,50 +30,37 @@ class SubjectsAnalyzer:
 
     Args:
         source: Provides message rows via dependency injection.
-        vectorizer: Preconfigured CountVectorizer. When omitted, a default one is built.
-        min_df: Minimum document frequency within a month to keep a term.
-        max_df: Maximum document frequency (fraction) within a month to keep a term.
-        ngram_range: Inclusive n-gram sizes to consider (e.g., (1, 2) for uni/bi-grams).
+        vectorizer: Preconfigured CountVectorizer.
     """
 
     source: MessageSource
-    vectorizer: CountVectorizer | None = None
-    min_df: float = 0.0
-    max_df: float = 1.0
-    ngram_range: tuple[int, int] = (1, 2)
-
-    def __post_init__(self) -> None:
-        if self.vectorizer is None:
-            vectorizer = CountVectorizer(
-                stop_words="english",
-                ngram_range=self.ngram_range,
-                min_df=self.min_df,
-                max_df=self.max_df,
-            )
-            object.__setattr__(self, "vectorizer", vectorizer)
+    vectorizer: Vectorizer
 
     def run(self) -> list[MonthlySubjectsResult]:
         """Compute subject document frequencies per month."""
 
         grouped = self._group_by_month(self.source.iter_messages())
+        logger.info("Grouped messages into %d month buckets", len(grouped))
         results: list[MonthlySubjectsResult] = []
-        for month, documents in sorted(grouped.items()):
-            frequencies = self._doc_frequencies(documents)
+        for month, rows in sorted(grouped.items()):
+            logger.info("Processing month %s with %d messages", month, len(rows))
+            frequencies = self._doc_frequencies(rows)
+            logger.info("Month %s produced %d subjects", month, len(frequencies))
             results.append(MonthlySubjectsResult(month=month, subjects=frequencies))
         return results
 
-    def _group_by_month(self, rows: Iterable[MessageRow]) -> dict[str, list[str]]:
-        grouped: dict[str, list[str]] = {}
+    def _group_by_month(self, rows: Iterable[MessageRow]) -> dict[str, list[MessageRow]]:
+        grouped: dict[str, list[MessageRow]] = {}
         for row in rows:
             month = _month_key(row.dt_published)
-            grouped.setdefault(month, []).append(row.translated_content)
+            grouped.setdefault(month, []).append(row)
         return grouped
 
-    def _doc_frequencies(self, documents: list[str]) -> dict[str, int]:
-        vectorizer = self.vectorizer
-        if vectorizer is None:
-            raise ValueError("CountVectorizer is not configured.")
-        matrix = vectorizer.fit_transform(documents)
-        vocab = vectorizer.get_feature_names_out()
+    def _doc_frequencies(self, rows: list[MessageRow]) -> dict[str, int]:
+        documents = [row.translated_content for row in rows]
+        if not documents:
+            return {}
+        matrix = self.vectorizer.fit_transform(documents)
+        vocab = self.vectorizer.get_feature_names_out()
         frequencies = (matrix > 0).sum(axis=0).A1
         return dict(zip(vocab, frequencies, strict=True))

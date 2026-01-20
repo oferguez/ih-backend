@@ -54,9 +54,12 @@ class SubjectDeltaReporter:
             )
 
         deltas.sort(key=lambda item: (-item.delta, item.subject))
-        top = deltas[:top_n] if top_n > 0 else []
-        bottom = deltas[-bottom_n:] if bottom_n > 0 else []
-        if bottom:
-            bottom = list(reversed(bottom))
-        combined = top + [item for item in bottom if item not in top]
+        if top_n == 0 or bottom_n == 0:
+            combined = deltas
+        else:
+            top = deltas[:top_n] if top_n > 0 else []
+            bottom = deltas[-bottom_n:] if bottom_n > 0 else []
+            if bottom:
+                bottom = list(reversed(bottom))
+            combined = top + [item for item in bottom if item not in top]
         return [item.as_dict(month_a_label, month_b_label) for item in combined]
