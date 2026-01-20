@@ -62,15 +62,6 @@ class TrendAnalysisRunner:
         )
         self._logger.info("Saved trends to DuckDB table trend_deltas")
         self._logger.info("%d trends", len(subject_trends))
-        output_payload = json.dumps(
-            subject_trends,
-            indent=2,
-            sort_keys=False,
-            default=int,
-        )
-        with open(self._output_path, "w", encoding="utf-8") as outfile:
-            outfile.write(output_payload)
-        self._logger.info("Saved trends to %s", self._output_path)
 
 
 def run_analysis(args: Namespace) -> None:
